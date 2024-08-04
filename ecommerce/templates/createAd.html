@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Create New Ad{% endblock %}
+{% block content %}
+<h2>Create New Ad</h2>
+<form method="POST" action="{{ url_for('new_ad') }}">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.title.label }}<br>
+        {{ form.title(size=32) }}<br>
+        {{ form.title.errors }}
+    </div>
+    <div>
+        {{ form.description.label }}<br>
+        {{ form.description(rows=4, cols=40) }}<br>
+        {{ form.description.errors }}
+    </div>
+    <div>
+        {{ form.price.label }}<br>
+        {{ form.price(size=32) }}<br>
+        {{ form.price.errors }}
+    </div>
+    <div>
+        {{ form.category.label }}<br>
+        {{ form.category() }}<br>
+        {{ form.category.errors }}
+    </div>
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
+{% endblock %}

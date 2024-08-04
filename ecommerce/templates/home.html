@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Ads</h1>
+{% for ad in ads %}
+    <div>
+        <h2><a href="{{ url_for('ad', ad_id=ad.id) }}">{{ ad.title }}</a></h2>
+        <p>{{ ad.description }}</p>
+        <p>{{ ad.price }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

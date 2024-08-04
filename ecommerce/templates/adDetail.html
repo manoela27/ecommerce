@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ ad.title }}{% endblock %}
+{% block content %}
+<h2>{{ ad.title }}</h2>
+<p>{{ ad.description }}</p>
+<p>Price: {{ ad.price }}</p>
+<p>Posted by: {{ ad.author.username }} on {{ ad.date_posted.strftime('%Y-%m-%d') }}</p>
+{% if current_user.is_authenticated %}
+    <form method="POST" action="{{ url_for('favorite_ad', ad_id=ad.id) }}">
+        <button type="submit">Add to Favorites</button>
+    </form>
+    <form method="POST" action="{{ url_for('ask_question', ad_id=ad.id) }}">
+        <div>
+            <textarea name="question" rows="4" cols="40" placeholder="Ask a question"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+{% else %}
+    <p><a href="{{ url_for('login') }}">Login</a> to ask questions or add to favorites</p>
+{% endif %}
+{% endblock %}

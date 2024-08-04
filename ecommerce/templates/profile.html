@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<h2>Profile</h2>
+<p>Username: {{ current_user.username }}</p>
+<p>Email: {{ current_user.email }}</p>
+<p><a href="{{ url_for('new_ad') }}">Create New Ad</a></p>
+<h3>My Ads</h3>
+{% for ad in current_user.ads %}
+    <div>
+        <h4><a href="{{ url_for('ad', ad_id=ad.id) }}">{{ ad.title }}</a></h4>
+        <p>{{ ad.description }}</p>
+        <p>{{ ad.price }}</p>
+    </div>
+{% endfor %}
+{% endblock %}
